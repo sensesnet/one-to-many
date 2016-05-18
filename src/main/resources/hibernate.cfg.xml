@@ -10,17 +10,14 @@
         <property name="hibernate.connection.password">root</property>
 
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-        <property name="connection.pool_size">1</property>
+        <!--property name="connection.pool_size">1</property-->
         
-        <property name="hibernate.current_session_context_class">thread</property>
+        <!--property name="hibernate.current_session_context_class">thread</property-->
         <property name="hibernate.show_sql">true</property>
-        <property name="cache.provider_class">org.hibernate.cache.NoCacheRegionFactoryAvailableException</property>
+        <!--property name="cache.provider_class">org.hibernate.cache.NoCacheRegionFactoryAvailableException</property-->
         <property name="hibernate.hbm2ddl.auto">create</property>
-
 
         <mapping class = "pojos.Order"/>
         <mapping class = "pojos.OrderStatus"/>
-
-
     </session-factory>
 </hibernate-configuration>

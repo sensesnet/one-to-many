@@ -8,31 +8,57 @@
     <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
     <database-model serializer="dbm" rdbms="MYSQL" format-version="2.5">
       <schema id="1" name="manytoone"/>
-      <table id="2" parent="1" name="hibernate_sequence"/>
-      <table id="3" parent="1" name="orderstatus"/>
-      <column id="4" parent="2" name="next_val">
-        <data-type>bigint(20)</data-type>
-      </column>
-      <column id="5" parent="3" name="orderId">
+      <table id="2" parent="1" name="order_status"/>
+      <table id="3" parent="1" name="user"/>
+      <column id="4" parent="2" name="order_Id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="6" parent="3" name="orderStatus">
+      <column id="5" parent="2" name="orderStatus">
         <mandatory>1</mandatory>
         <data-type>varchar(20)</data-type>
       </column>
-      <column id="7" parent="3" name="totalPrice">
+      <column id="6" parent="2" name="total_Price">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="8" parent="3" name="totalTime">
+      <column id="7" parent="2" name="total_Time">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <key id="9" parent="3" name="PRIMARY">
-        <columns>orderId</columns>
+      <key id="8" parent="2" name="PRIMARY">
+        <columns>order_Id</columns>
         <primary>1</primary>
       </key>
+      <column id="9" parent="3" name="Id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="10" parent="3" name="meal_Id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="11" parent="3" name="user_Id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="12" parent="3" name="order_Id">
+        <data-type>int(11)</data-type>
+      </column>
+      <index id="13" parent="3" name="FKarakdgj4m1w9s2xomj7agkrly">
+        <columns>order_Id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="14" parent="3" name="PRIMARY">
+        <columns>Id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="15" parent="3" name="FKarakdgj4m1w9s2xomj7agkrly">
+        <columns>order_Id</columns>
+        <ref-key>~.order_status.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
     </database-model>
   </data-source>
 </component>

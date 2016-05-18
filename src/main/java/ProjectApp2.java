@@ -1,6 +1,6 @@
 import org.hibernate.Session;
-import pojos.Order;
 import pojos.OrderStatus;
+import pojos.Order;
 import util.HibernateUtil;
 
 /**
@@ -12,6 +12,7 @@ public class ProjectApp2 {
 
 
         System.out.println("Hibernate one to many (Annotation)");
+
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
@@ -25,10 +26,24 @@ public class ProjectApp2 {
         Order order = new Order();
         order.setMealId(12);
         order.setUserId(13);
-        order.setOrderStatus(orderStatus);
-        orderStatus.getOrders().add(order);
 
-        session.save(order);        // save
+
+        Order order1 = new Order();
+        order1.setMealId(10);
+        order1.setUserId(10);
+
+                                        //add orderstatus to order
+        order.setOrderStatus(orderStatus);
+        order1.setOrderStatus(orderStatus);
+
+        session.save(order);
+        session.save(order1);                                             // save
+
+
+        orderStatus.getOrders().add(order);
+        orderStatus.getOrders().add(order1);
+        session.update(orderStatus);
+
 
         session.getTransaction().commit();
         System.out.println("Done");

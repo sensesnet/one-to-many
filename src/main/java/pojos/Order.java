@@ -1,36 +1,57 @@
 package pojos;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 
-
-@Entity                   //  annotation describe DB table how javaclass
-@Table(name = "Order")       //  table name
+/**
+ * Created by KIRILL on 18.05.2016.
+ */
+@Entity
+@Table(name="USER")
 public class Order {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)  // value autogenerate
-    @Column( name = "Id")
-    private int id;       //autoincrement identify explicitly column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Id")
+    private int id;
 
-    @Column(name = "mealId")
+    @Column(name = "meal_Id", unique = false, nullable = false)
     private int mealId;
 
-    @Column(name = "userId")
+    @Column(name = "user_Id", unique = false, nullable = false)
     private int userId;
 
-    @ManyToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
-    @JoinColumn(name = "orderId")
+    @ManyToOne( fetch = FetchType.LAZY)
+    //@Cascade(CascadeType.ALL)
+    @JoinColumn(name = "order_Id")
     private OrderStatus orderStatus;
 
-    public int getId() {return id;}
-    public void setId(int id) {this.id = id;}
+    public OrderStatus getOrderStatus() {return orderStatus;}
 
-    public int getMealId() {return mealId;}
-    public void setMealId(int mealId) {this.mealId = mealId;}
-
-    public int getUserId() {return userId;}
-    public void setUserId(int userId) {this.userId = userId;}
-
-    public OrderStatus getOrderStatus() {return this.orderStatus;}
     public void setOrderStatus(OrderStatus orderStatus) {this.orderStatus = orderStatus;}
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getMealId() {
+        return mealId;
+    }
+
+    public void setMealId(int mealId) {
+        this.mealId = mealId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 }
